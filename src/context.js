@@ -9,10 +9,22 @@ const AppProvider = ({ children }) => {
     const [searchTerm, setSerchtTerm] = useState("a"); // default value a because we want to see some cocktails when we load the page
     const [cocktails, setCocktails] = useState([]);
 
+    const fetchDrinks = async () => {
+        setLoading(true);
+        try {
+            const response = await fetch(`${url}${searchTerm}`);
+            const data = await response.json();
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+    useEffect(() => {
+        fetchDrinks();
+    }, [searchTerm]);
+
     return (
-        <AppContext.Provider
-            value={{ loading, searchTerm, cocktails, setSerchtTerm }}
-        >
+        <AppContext.Provider value={{ loading, cocktails, setSerchtTerm }}>
             {children}
         </AppContext.Provider>
     );
