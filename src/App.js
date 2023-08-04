@@ -3,13 +3,18 @@ import React from "react";
 // import router
 import { router } from "./router";
 import { RouterProvider } from "react-router-dom";
+import About from "./pages/About";
 
 // import pages
 
 // import components
 
 function App() {
-    return <RouterProvider router={router} />;
+    return (
+        <>
+            <RouterProvider router={router} />;
+        </>
+    );
 }
 
 export default App;
