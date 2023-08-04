@@ -18,7 +18,8 @@ import RootLayout from "./components/RootLayout";
 // and wraps them in a Layout component
 export const router = createBrowserRouter(
     createRoutesFromElements(
-        <Route path="/" element={<RootLayout />}>
+        <Route element={<RootLayout />}>
+            <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
             <Route path="/cocktail/:id" element={<SingleCocktail />} />
             <Route path="*" element={<Error />} />
