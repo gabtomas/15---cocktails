@@ -12,9 +12,14 @@ const CocktailList = () => {
 
     if (cocktails.length < 1) {
         return (
-            <h2 className="section-title">
-                No cocktails matched your search criteria
-            </h2>
+            <section className="section">
+                <h2 className="section-title">cocktails</h2>
+                <div className="cocktails-center">
+                    {cocktails.map((drink) => {
+                        return <Cocktail key={drink.id} {...drink} />;
+                    })}
+                </div>
+            </section>
         );
     }
 };
