@@ -6,10 +6,10 @@ const AppContext = React.createContext();
 
 const AppProvider = ({ children }) => {
     const [loading, setLoading] = useState(true);
-    const [searchTerm, setSerchtTerm] = useState("a"); // default value a because we want to see some cocktails when we load the page
+    const [searchTerm, setSearchTerm] = useState("a"); // default value a because we want to see some cocktails when we load the page
     const [cocktails, setCocktails] = useState([]);
 
-    const fetchDrinks = async () => {
+    const fetchDrinks = useCallback(async () => {
         setLoading(true);
         try {
             const response = await fetch(`${url}${searchTerm}`);
@@ -44,14 +44,14 @@ const AppProvider = ({ children }) => {
             console.log(error);
             setLoading(false);
         }
-    };
+    }, [searchTerm]);
 
     useEffect(() => {
         fetchDrinks();
-    }, [searchTerm]);
+    }, [searchTerm, fetchDrinks]);
 
     return (
-        <AppContext.Provider value={{ loading, cocktails, setSerchtTerm }}>
+        <AppContext.Provider value={{ loading, cocktails, setSearchTerm }}>
             {children}
         </AppContext.Provider>
     );
